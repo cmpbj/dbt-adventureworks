@@ -1,0 +1,67 @@
+version: 2
+
+sources:
+ - name: adventureworksdw
+   description: A clone of a Postgres database of Adventure Works operations.
+   database: 
+   schema: adventureworksdw
+   tables:
+     - name: sales_customer
+       description: Raw customers data.
+       columns:
+         - name: customerid
+           description: Primary key for customers.
+           tests:
+             - unique
+             - not_null
+         - name: personid
+           description: Foreing Key for customers
+           tests:
+             - unique
+             - not_null
+     - name: product
+       description: Raw products data.
+       columns:  
+         - name: product_id
+           description: Primary key for products.
+           tests:
+             - unique
+             - not_null
+     - name: store
+       description: Raw store data.
+     - name: salesreason
+       description: Raw salesreason data.
+       columns:  
+         - name: sales_reason_id
+           description: Primary key for salesreason.
+           tests:
+             - unique
+             - not_null
+     - name: salesorderdetail
+       decription: details of sales
+       columns:
+          - name: sales_order_detail_id
+            description: primary key for salesorderdetail.
+            tests:
+             - unique
+             - not_null
+     - name: salesorderheadersalesreason
+       description: reason of sales.
+     - name: salesorderheader
+       description: description of orders.
+     - name: salesperson
+       description: description of sales of persons.
+     - name: salespersonquotahistory
+       description: sales person quota history.
+     - name: stateprovince
+       description: states.
+     - name: address
+       description: addres of city.
+     - name: employee
+       decription: details from employees.
+     - name: person
+       decription: details from persons.
+     - name: countryregion
+       description: country regions.
+     - name: creditcard
+       description: Creditcard informations.
