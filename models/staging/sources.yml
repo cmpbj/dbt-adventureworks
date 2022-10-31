@@ -15,18 +15,30 @@ sources:
              - unique
              - not_null
          - name: personid
-           description: Foreing Key for customers
+           description: Foreing Key for humanresources.person
            tests:
              - unique
              - not_null
-     - name: product
+     - name: production_product
        description: Raw products data.
        columns:  
-         - name: product_id
+         - name: productid
            description: Primary key for products.
            tests:
              - unique
              - not_null
+         - name: productnumber 
+           description: Unique product identification number
+           tests:
+             - unique
+         - name: productsubcategoryid
+           description: Foreing key for production.productsubcategory
+           tests:
+             - unique
+         - name: productmodelid
+           description: Foreing key for production.productmodel
+           tests:
+             - unique     
      - name: store
        description: Raw store data.
      - name: salesreason
