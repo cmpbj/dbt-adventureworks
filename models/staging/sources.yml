@@ -9,23 +9,30 @@ sources:
      - name: sales_customer
        description: Raw customers data.
        columns:
+         - name: rowguid
+           description: Surrogate key for customers.
+           tests:
+             - unique
+             - not_null  
          - name: customerid
            description: Primary key for customers.
            tests:
-             - unique
              - not_null
          - name: personid
            description: Foreing Key for humanresources.person
            tests:
-             - unique
              - not_null
      - name: production_product
        description: Raw products data.
-       columns:  
+       columns:
+         - name: rowguid
+           description: Surrogate key for products.
+           tests:
+             - unique
+             - not_null  
          - name: productid
            description: Primary key for products.
            tests:
-             - unique
              - not_null
          - name: productnumber 
            description: Unique product identification number
@@ -39,8 +46,16 @@ sources:
            description: Foreing key for production.productmodel
            tests:
              - unique     
-     - name: store
+     - name: sales_store
        description: Raw store data.
+       columns:
+         - name: businessentityid
+           description: Primary key for stores
+           tests:
+             - unique
+             - not_null
+         - name: salespersonid
+           description: Foreing key of sales person assigned to the customer (sales.salesperson)
      - name: salesreason
        description: Raw salesreason data.
        columns:  

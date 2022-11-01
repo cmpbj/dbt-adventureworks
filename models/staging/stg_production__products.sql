@@ -1,7 +1,8 @@
 with
     products as (
         select
-            cast(productid as int) as product_id_pk
+            rowguid as product_sk
+            , cast(productid as int) as product_id_pk
             , cast(productsubcategoryid as int) as product_subcategory_id_fk
             , cast(productmodelid as int) as product_model_id_fk
             , cast(productnumber as string) as product_number
