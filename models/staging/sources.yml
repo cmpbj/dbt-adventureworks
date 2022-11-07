@@ -10,7 +10,7 @@ sources:
        description: Raw customers data.
        columns:
          - name: rowguid
-           description: Surrogate key for customers.
+           description: Surrogate key to customers.
            tests:
              - unique
              - not_null  
@@ -18,77 +18,333 @@ sources:
            description: Primary key for customers.
            tests:
              - not_null
+             - unique
          - name: personid
-           description: Foreing Key for humanresources.person
+           description: Foreign Key to humanresources.person
            tests:
              - not_null
+
      - name: production_product
        description: Raw products data.
        columns:
          - name: rowguid
-           description: Surrogate key for products.
+           description: Surrogate key to products.
            tests:
              - unique
              - not_null  
          - name: productid
-           description: Primary key for products.
+           description: Primary key to products.
            tests:
              - not_null
+             - unique
          - name: productnumber 
            description: Unique product identification number
            tests:
              - unique
          - name: productsubcategoryid
-           description: Foreing key for production.productsubcategory
+           description: Foreign key to production.productsubcategory
            tests:
              - unique
          - name: productmodelid
-           description: Foreing key for production.productmodel
+           description: Foreign key to production.productmodel
            tests:
-             - unique     
+             - unique
+
      - name: sales_store
        description: Raw store data.
        columns:
          - name: businessentityid
-           description: Primary key for stores
+           description: Primary key to stores
            tests:
              - unique
              - not_null
          - name: salespersonid
-           description: Foreing key of sales person assigned to the customer (sales.salesperson)
-     - name: salesreason
+           description: Foreign key to sales person assigned to the customer (sales.salesperson)
+
+     - name: sales_salesreason
        description: Raw salesreason data.
        columns:  
-         - name: sales_reason_id
-           description: Primary key for salesreason.
+         - name: salesreasonid
+           description: Primary key to salesreason.
            tests:
              - unique
              - not_null
-     - name: salesorderdetail
-       decription: details of sales
+
+     - name: sales_salesorderdetail
+       decription: Table with the individual products associated with a specific sales order
        columns:
-          - name: sales_order_detail_id
-            description: primary key for salesorderdetail.
+          - name: rowguid
+            description: Surrogate key to sales.salesorderdetail.
             tests:
              - unique
              - not_null
-     - name: salesorderheadersalesreason
-       description: reason of sales.
-     - name: salesorderheader
-       description: description of orders.
-     - name: salesperson
-       description: description of sales of persons.
-     - name: salespersonquotahistory
-       description: sales person quota history.
-     - name: stateprovince
-       description: states.
-     - name: address
-       description: addres of city.
-     - name: employee
-       decription: details from employees.
-     - name: person
-       decription: details from persons.
-     - name: countryregion
-       description: country regions.
-     - name: creditcard
-       description: Creditcard informations.
+          - name: salesorderid
+            description: Foreign key to sales.salesorderheader  
+            tests:
+              - not_null
+          - name: salesorderdetailid
+            description: Primary key to sales.salesorderdetail
+            tests:
+              - unique
+              - not_null
+          - name: productid
+            description: Foreign key to production.product
+            tests:
+              - not_null
+          - name: specialofferid
+            description: Foreign key to sales.especialofferproduct
+      
+     - name: sales_salesorderheader
+       description: Sales order information
+       columns:
+         - name: rowguid
+           description: Surrogate key to sales.salesorderheader
+           tests:
+             - unique
+             - not_null
+         - name: salesorderid
+           description: Primary key to sales.salesorderheader
+           tests:
+             - unique
+             - not_null
+         - name: costomerid
+           description: Foreign key to sales.customer
+           tests:
+             - not_null
+         - name: salespersonid
+           description: Foreign key to sales.salesperson
+           tests:
+             - not_null
+         - name: territoryid
+           description: Foreign key to sales.salesterritory
+           tests:
+             - not_null
+         - name: billtoaddressid
+           description: Foreign key to person.address. It's about the customer billing address
+           tests:
+             - not_null
+         - name: shiptoaddressid
+           description:  Foreign key to person.address. It's about the customer shipping address
+           tests: 
+             - not_null
+         - name: shipmethodid
+           description: Foreign key to purchasing.shipmethod
+           tests:
+             - not_null
+         - name: creditcardid
+           description: Foreign key to sales.creditcard. Credit card identification number.
+         - name: currencyrateid
+           description: Foreign key to sales.currencyrate
+
+     - name: sales_salesorderheadersalesreason
+       description: Intermediate table between orders tables and sales reason tables. This table makes this connection.
+       columns:
+         - name: salesreasonid
+           description: Primary key and foreign key to sales.salesreason
+           tests:
+             - not_null
+             - unique
+         - name: salesorderid
+           description: Primary key and foreign key to sales.salesorderheader
+           tests:
+             - not_null
+             - unique
+
+
+     - name: sales_salesperson
+       description: Information about ssales representative
+       columns:
+         - name: rowguid
+           description: Surrogate key to sales.salesperson
+           tests:
+             - unique
+             - not_null
+         - name: businessentityid
+           description: Primary key and foreign key to humanresources.employee
+           tests:
+             - not_null
+             - unique
+         - name: territoryid
+           description: Territory currently assigned to. Foreign key to sales.salesterritory
+           tests:
+             - not_null
+
+     - name: sales_salespersonquotahistory
+       description: Sales person performance data
+       columns:
+         - name: businessentityid
+           description: Sales person identification number. Foreign key to sales.salesperson 
+           tests:
+             - not_null
+         - name: rowguid
+           description: Surrogate key to sales.salespersonquotahistory
+           tests:
+             - unique
+             - not_null
+
+     - name: person_stateprovince
+       description: States and province table
+       columns:
+         - name: stateprovinceid
+           description: Primary key for person.stateprovince data
+           tests:
+             - not_null
+             - unique
+         - name: countryregioncode
+           description: Foreign key to person.countryregion
+           tests:
+             - not_null
+         - name: territoryid
+           description: Foreign key to sales.salesterritory
+           tests:
+             - not_null
+         - name: rowguid
+           description: Surrogate key to person_stateprovince
+           tests:
+             - not_null
+
+     - name: person_address
+       description: Street address information for customers, employees and vendors.
+       columns:
+         - name: rowguid
+           description: Surrogate key for person.address
+           tests:
+             - unique
+             - not_null
+         - name: addressid
+           description: Primary key for person.address
+           tests:
+             - unique
+             - not_null
+         - name: stateprovinceid
+           description: foreign key to person.stateprovince
+           tests:
+             - not_null
+
+     - name: humanresources_employee
+       decription: Employee information.
+       columns:
+         - name: businessentityid
+           description: Primary key for humanresources.employee and foreign key to person.person
+           tests:
+             - unique
+             - not_null
+         - name: rowguid
+           description: Surrogate key for humanresourcers.employee
+           tests:
+             - unique
+             - not_null
+
+     - name: person_person
+       decription: Info about people involved with Adventure Works, like employess, customer contacts and vendors
+       columns:
+         - name: businessentityid
+           description: Primary key for person.person
+           tests:
+             - unique
+             - not_null
+         - name: rowguid
+           description: Surrogate key for person.person
+           tests:
+             - unique
+             - not_null
+
+     - name: sales_creditcard
+       description: Customer creditcard informations.
+       columns:
+         - name: creditcardid
+           description: Primary key for sales.creditcard
+           tests:
+             - not_null
+             - unique
+
+     - name: person_businessentityaddress
+       description: Table that connects customers, vendors and employees to their addresses
+       columns:
+         - name: businessentityid
+           description: Primary key to person.businessentity
+           tests:
+             - not_null
+             - unique
+         - name: addressid
+           description: Foreign key to person.address
+           tests:
+             - not_null
+             - unique
+         - name: addresstypeid
+           description: Foreign key to person.addresstype
+           tests:
+             - not_null
+
+     - name: person_addresstype
+       description: Types of addresses stored in the Address table
+       columns:
+         - name: addresstypeid
+           description: Primary key for person.addresstype
+           tests:
+             - not_null
+             - unique
+
+     - name: person_countryregion
+       description: Codes for countries and regions
+       columns:
+         - name: countryregioncode
+           description: Standard code for countries and regions
+           
+     - name: production_productmodel
+       description: Product model classification
+       columns:
+         - name: productmodelid
+           description: Primary key for production_productmodel
+           tests:
+             - not_null
+             - unique
+
+     - name: purchasing_productvendor
+       description: Table that mapping vendors with the products they supply
+       columns:
+         - name: productid
+           description: Primary key. Foreign key to production.product
+           tests:
+             - unique
+             - not_null
+         - name: businessentityid
+           description: Primary key. Foreign key to purschasing.vendor
+           tests:
+             - unique
+             - not_null
+     
+     - name: purchasing_vendor
+       description: Companies that sells parts or goods to adventure works
+       columns:
+         - name: businessentityid
+           description: Primary key. Foreign key to person.businessentity
+           tests:
+             - unique
+             - not_null
+
+     - name: production_productcategory
+       description: Product categorization
+       columns:
+         - name: productcategoryid
+           description: Primary key for production.productcategory
+           tests:
+             - not_null
+             - unique
+
+     - name: production_productsubcategory
+       description: Product subcategories
+       columns:
+         - name: productsubcategoryid
+           description: Primary key for production.productsubcategory
+           tests:
+             - not_null
+             - unique
+         - name: productcategoryid
+           description: Foreign key to production.productcategory
+           tests:
+             - not_null
+             - unique
+             
+
+

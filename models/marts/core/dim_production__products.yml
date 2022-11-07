@@ -1,0 +1,104 @@
+version: 2
+
+models:
+  - name: dim_production__products
+    description: ""
+    columns:
+      - name: product_sk
+        description: Dim Products surrogate key
+        tests:
+          - not_null
+          - unique
+
+      - name: product_id
+        description: Dim Products primary key
+        tests:
+          - not_null
+          - unique
+
+      - name: product_subcategory_id
+        description: Product subcategory. Foreign key to stg_production__product_subcategory
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_production__product_subcategory')
+              field: product_subcategory_id 
+
+      - name: product_category_id
+        description: Product subcategory. Foreign key to stg_production__product_category
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_production__product_category')
+              field: product_category_id 
+
+      - name: product_model_id
+        description: Product model. Foreign key to stg_production__product_model
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_production__product_model')
+              field: product_model_id 
+
+      - name: product_number
+        description: Unique product identification number
+
+      - name: product_name
+        description: Name of the product
+
+      - name: model_name
+        description: Name of the model
+
+      - name: category_name
+        description: Name of the category
+
+      - name: subcategory_name
+        description: Name of the subcategory
+
+      - name: product_make_flag
+        description: Column that identifies products that are manufactured in Adventure Works or purchased
+
+      - name: product_salable_item
+        description: Column that identifies products thar are salable or not
+
+      - name: product_color
+        description: Product color
+
+      - name: safetystocklevel
+        description: Minimum inventory quantity
+
+      - name: reorderpoint
+        description: Inventory level
+
+      - name: standardcost
+        description: Standard cost of the product
+
+      - name: listprice
+        description: Selling price
+
+      - name: sizeunitmeasurecode
+        description: Unit measure for size
+
+      - name: weightunitmeasurecode
+        description: Unit measure for weight
+
+      - name: product_weight
+        description: Product weight
+
+      - name: daystomanufacture
+        description: Number of days required to manufacture the product
+
+      - name: productline
+        description: Product line
+
+      - name: class
+        description: Product class
+
+      - name: style
+        description: Product style
+
+      - name: sell_start_date
+        description: Date the product was available for sale
+
+      - name: sell_end_date
+        description: Date the product was discontinued
