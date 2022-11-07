@@ -1,0 +1,40 @@
+version: 2
+
+models:
+  - name: dim_sales__customer
+    description: Customer dimension
+    columns:
+      - name: customer_sk
+        description: Customer surrogate key
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Number that identifies customers
+        tests:
+          - not_null
+
+      - name: business_entity_id
+        description: Foreign key to stg_person__people_information
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_person__people_information')
+              field: business_entity_id
+
+      - name: store_id
+        description: Foreign key to stg_sales__store
+        tests:
+          - relationships:
+              to: ref('stg_sales__store')
+              field: store_id
+              
+      - name: customer_territory_id
+        description: Foreign key to sales.salesterritory
+
+
+      - name: full_customer_name
+        description: Full customer name
+
+      

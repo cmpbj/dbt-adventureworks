@@ -35,8 +35,8 @@ models:
   adventureworks_analytics:
     
     staging:
-      +materialized: view
+      +materialized: table
       +schema: staging_tables
     marts:
-      +materialized: tables
+      +materialized: table
       +schema: analytical

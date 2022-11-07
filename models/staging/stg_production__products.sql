@@ -2,9 +2,9 @@ with
     products as (
         select
             rowguid as product_sk
-            , cast(productid as int) as product_id_pk
-            , cast(productsubcategoryid as int) as product_subcategory_id_fk
-            , cast(productmodelid as int) as product_model_id_fk
+            , cast(productid as int) as product_id
+            , cast(productsubcategoryid as int) as product_subcategory_id
+            , cast(productmodelid as int) as product_model_id
             , cast(productnumber as string) as product_number
             , cast(name as string) as product_name
             , case
