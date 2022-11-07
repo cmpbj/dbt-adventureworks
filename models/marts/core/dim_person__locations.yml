@@ -1,0 +1,49 @@
+version: 2
+
+models:
+  - name: dim_person__locations
+    description: ""
+    columns:
+      - name: location_sk
+        description: Surrogate key for dim_person__locations
+        tests:
+          - not_null
+          - unique
+
+      - name: address_id
+        description: Primary key for dim_person__locations. Foreign key to stg_person__address
+        tests:
+          - unique
+          - not_null
+          - relationships:
+              to: ref('stg_person__address')
+              field: address_id
+
+      - name: state_province_id
+        description: Foreign key for stg_person__state_province
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_person__state_province')
+              field: state_province_id
+
+      - name: address_first_line
+        description: First street address line
+
+      - name: address_second_line
+        description: Second street address line
+
+      - name: city
+        description: City name
+
+      - name: state_or_province
+        description: State or province name
+
+      - name: country
+        description: Country name
+
+      - name: postal_code
+        description: Postal code for the street address
+
+      - name: lng_lat_address
+        description: Latitude and longitude of this address

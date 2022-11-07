@@ -24,32 +24,32 @@ with
             , sell_end_date
             , modified_date
         from {{ ref('stg_production__products') }}
-    ),
+    )
 
-    raw_models_info as (
+    , raw_models_info as (
         select
             product_model_id
             , model_name
         from {{ ref('stg_production__product_model') }}
-    ),
+    )
 
-    raw_category_info as (
+    , raw_category_info as (
         select
             product_category_id
             , category_name
         from {{ ref('stg_production__product_category') }}
-    ),
+    )
 
-    raw_subcategory_info as (
+    , raw_subcategory_info as (
         select
             product_subcategory_id
             , product_category_id
             , subcategory_name
         from {{ ref('stg_production__product_subcategory') }}
 
-    ),
+    )
 
-    category_subcategory_joined as (
+    , category_subcategory_joined as (
         select
             raw_subcategory_info.product_category_id
             , raw_subcategory_info.product_subcategory_id
@@ -57,10 +57,10 @@ with
             , raw_subcategory_info.subcategory_name
         from raw_subcategory_info
         left join raw_category_info on raw_subcategory_info.product_category_id = raw_category_info.product_category_id
-    ),
+    )
 
 
-    product_with_model as (
+    , product_with_model as (
         select
               raw_products.product_id
             , raw_products.product_subcategory_id
@@ -86,9 +86,9 @@ with
             , raw_products.sell_end_date
         from raw_products
         left join raw_models_info on raw_products.product_model_id = raw_models_info.product_model_id
-    ),
+    )
 
-    product_category_subcategory as (
+    , product_category_subcategory as (
         select
               product_with_model.product_id
             , category_subcategory_joined.product_category_id  
@@ -117,9 +117,9 @@ with
             , product_with_model.sell_end_date
         from product_with_model
         left join category_subcategory_joined on product_with_model.product_subcategory_id = category_subcategory_joined.product_subcategory_id
-    ),
+    )
 
-    final as (
+    , final as (
         select
             {{ dbt_utils.surrogate_key(['product_id', 'product_name', 'product_category_id', 'product_subcategory_id']) }} as product_sk
             , product_id
