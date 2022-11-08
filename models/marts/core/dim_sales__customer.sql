@@ -7,7 +7,6 @@ with
             , store_id
         from {{ ref('stg_sales__customers') }}
     )
-
     , raw_person as (
         select
             business_entity_id
@@ -17,8 +16,6 @@ with
         
         from {{ ref('stg_person__people_information') }}
     ) 
-
-
     , customer_people as (
 
          SELECT 
@@ -32,8 +29,6 @@ with
         FROM raw_customers as customers
         left join raw_person as person on customers.person_information_id = person.business_entity_id
     )
-
-
     , transform as (
         select
             customer_id
@@ -43,7 +38,6 @@ with
             , concat(person_first_name, ' ', coalesce(person_middle_name, ''), ' ', person_last_name) as full_customer_name
         from customer_people
     )
-
     , final as (
         select
             {{ dbt_utils.surrogate_key(['customer_id', 'business_entity_id']) }} as customer_sk
@@ -56,4 +50,5 @@ with
     )
 
 
-    select * from final
+select *
+from final
