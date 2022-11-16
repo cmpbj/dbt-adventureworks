@@ -1,0 +1,104 @@
+version: 2
+
+models:
+  - name: dim_sales__sales_info
+    description: Dimension with informations about sales
+    columns:
+      - name: sales_order_sk
+        description: Surrogate key for dim_sales__sales_info
+        tests:
+          - unique
+          - not_null
+
+      - name: sales_order_id_pk
+        description: Primary key for dim_sales__sales_info
+        tests:
+          - unique
+          - not_null
+
+      - name: customer_id
+        description: Foreign key to stg_sales__customers
+        tests:
+          - not_null
+          - relationships:
+              to: ref('stg_sales__customers')
+              field: customer_id
+
+      - name: sales_person_id
+        description: Foreign key to stg_sales__sales_person
+        tests:
+          - relationships:
+              to: ref('stg_sales__sales_person')
+              field: sales_person_id
+
+      - name: customer_billing_address_id
+        description: Foreign key to stg_person__address
+        tests:
+          - relationships:
+              to: ref('stg_person__address')
+              field: address_id
+
+      - name: customer_shipping_address_id
+        description: Foreign key to stg_person__address
+        tests:
+          - relationships:
+              to: ref('stg_person__address')
+              field: address_id
+
+      - name: shipping_method_id
+        description: Foreing key
+
+      - name: currency_rate_id
+        description: Foreing key
+
+      - name: credit_card_id
+        description: Foreing key to stg_sales__customer_creditdard_infos
+        tests:
+          - relationships:
+              to: ref('stg_sales__customer_creditcard_infos')
+              field: credit_card_id
+
+      - name: sales_reason_name
+        description: Sales reason description
+
+      - name: credit_card_name
+        description: Credit card name
+
+      - name: order_date
+        description: Date the sales order was created
+
+      - name: due_date
+        description: Date the order is due to the customer
+
+      - name: ship_date
+        description: Date the order was shipped to the customer
+
+      - name: order_status
+        description: Order status
+
+      - name: is_ordered_online
+        description: Order placed by a sales person or placed online
+
+      - name: purchase_order_number
+        description: Customer purchase order number
+
+      - name: account_number
+        description: Financial accounting number
+
+      - name: credit_card_approval_code
+        description: Approval code provided by the credit card
+
+      - name: order_sales_sub_total
+        description: Sales subtotal
+
+      - name: order_tax_amount
+        description: Tax amount
+
+      - name: order_freight
+        description: Shipping cost
+
+      - name: order_total_due_from_customers
+        description: Total due from customers
+
+      - name: modified_date
+        description: Date and time the record was last updated.

@@ -1,0 +1,118 @@
+version: 2
+
+models:
+  - name: fct_sales__orders
+    description: Fact table with quantitative and qualitative information about orders
+    columns:
+      - name: sales_order_id_fk
+        description: Foreign key for dim_sales__sales_info
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_sales__sales_info')
+              field: sales_order_sk
+
+      - name: products_fk
+        description: Foreign key for dim_production__products
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_production__products')
+              field: product_sk
+
+      - name: customer_fk
+        description: Foreign key for dim_sales__customer
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_sales__customer')
+              field: customer_sk
+
+      - name: location_sk
+        description: Foreign key for dim_person__locations
+        tests:
+          - not_null
+          - relationships:
+              to: ref('dim_person__locations')
+              field: location_sk
+
+      - name: full_customer_name
+        description: Customer full name
+
+      - name: bill_city
+        description: City for where the bill is send
+
+      - name: bill_state_or_province
+        description: State or Province for where the bill is send
+
+      - name: bill_country
+        description: Country for where the bill is send
+
+      - name: ship_city
+        description: City for where the order is send
+
+      - name: ship_state_or_province
+        description: State or Province for where the order is send
+
+      - name: ship_country
+        description: Country for where the order is send
+
+      - name: credit_card_name
+        description: Credit card description
+
+      - name: product_name
+        description: Product description
+
+      - name: model_name
+        description: Model name of the product
+
+      - name: category_name
+        description: Category name of the product
+
+      - name: subcategory_name
+        description: Subcategory name of the product
+
+      - name: product_make_flag
+        description: Column that identifies products that are manufactured in Adventure Works or purchased
+
+      - name: product_salable_item
+        description: Column that identifies products thar are salable or not
+
+      - name: productline
+        description: Product line
+
+      - name: class
+        description: Product clas
+
+      - name: style
+        description: Product style
+
+      - name: reason_per_order
+        description: Reason of the sale per order
+
+      - name: order_date
+        description: Date the sales order was created
+
+      - name: due_date
+        description: Date the order is due to the customer
+
+      - name: ship_date
+        description: Date the order was shipped to the customer
+
+      - name: is_ordered_online
+        description: Order placed by a sales person or placed online
+
+      - name: order_qty
+        description: Quantity of products per order
+
+      - name: unit_price
+        description: Price per product
+
+      - name: unit_price_discount
+        description: Discount per product
+
+      - name: order_tax_amount_per_product
+        description: Tax amount per product
+
+      - name: order_freight_per_product
+        description: freight per product
