@@ -7,14 +7,8 @@ with
             , cast(productmodelid as int) as product_model_id
             , cast(productnumber as string) as product_number
             , cast(name as string) as product_name
-            , case
-                when makeflag = false then 0
-                when makeflag = true then 1
-            end as product_make_flag
-            , case
-                when finishedgoodsflag = false then 0
-                when finishedgoodsflag = true then 1
-            end as product_salable_item
+            , {{ transforms_boolean_values('makeflag') }} as product_make_flag
+            , {{ transforms_boolean_values('finishedgoodsflag') }} as product_salable_item
             , color as product_color
             , safetystocklevel
             , reorderpoint

@@ -16,7 +16,7 @@ with
             , cast(duedate as datetime) as due_date
             , cast (shipdate as datetime) as ship_date
             , status as order_status
-            , onlineorderflag as is_ordered_online
+            , {{ transforms_boolean_values('onlineorderflag') }} as is_ordered_online
             , purchaseordernumber as purchase_order_number
             , accountnumber as account_number
             , creditcardapprovalcode as credit_card_approval_code
