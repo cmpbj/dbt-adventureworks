@@ -46,7 +46,7 @@ with
     , grouped_reasons as (
         select
             raw_reference_reason.sales_order_id
-            , string_agg(distinct raw_sales_reason.reason_type) as reason_per_order
+            , string_agg(distinct raw_sales_reason.reason_type, ', ') as reason_per_order
       from raw_reference_reason
       left join raw_sales_reason on raw_reference_reason.sales_reason_id = raw_sales_reason.sales_reason_id
       group by raw_reference_reason.sales_order_id
