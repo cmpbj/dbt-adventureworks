@@ -254,8 +254,14 @@ with
         left join locations on order_details_bill_address.customer_shipping_address_id = locations.address_id
 
     )
-    , final as (
+    , revenue as (
         select
+        *
+          , ((unit_price * (1 - unit_price_discount) * order_qty) + (order_tax_amount_per_product + order_freight_per_product)) as revenue
+        from order_details_ship_address
+    )
+    , final as (
+         select
         sales_order_id_fk
           , products_fk
           , customer_fk
@@ -287,7 +293,8 @@ with
           , unit_price_discount
           , order_tax_amount_per_product
           , order_freight_per_product
-        from order_details_ship_address
+          , revenue
+        from revenue
     )
 select *
 from final
