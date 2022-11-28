@@ -9,17 +9,17 @@ with
             , product_make_flag
             , product_salable_item
             , product_color
-            , safetystocklevel
-            , reorderpoint
-            , standardcost
-            , listprice
-            , sizeunitmeasurecode
-            , weightunitmeasureCode
+            , safety_stock_level
+            , reorder_point
+            , stardard_cost
+            , list_price
+            , size_unit_measure_code
+            , weight_unit_measure_code
             , product_weight
-            , daystomanufacture
-            , productline
-            , class
-            , style
+            , days_to_manufacture
+            , product_line
+            , product_class
+            , product_style
             , sell_start_date
             , sell_end_date
             , modified_date
@@ -71,17 +71,17 @@ with
             , raw_products.product_make_flag
             , raw_products.product_salable_item
             , raw_products.product_color
-            , raw_products.safetystocklevel
-            , raw_products.reorderpoint
-            , raw_products.standardcost
-            , raw_products.listprice
-            , raw_products.sizeunitmeasurecode
-            , raw_products.weightunitmeasureCode
+            , raw_products.safety_stock_level
+            , raw_products.reorder_point
+            , raw_products.stardard_cost
+            , raw_products.list_price
+            , raw_products.size_unit_measure_code
+            , raw_products.weight_unit_measure_code
             , raw_products.product_weight
-            , raw_products.daystomanufacture
-            , raw_products.productline
-            , raw_products.class
-            , raw_products.style
+            , raw_products.days_to_manufacture
+            , raw_products.product_line
+            , raw_products.product_class
+            , raw_products.product_style
             , raw_products.sell_start_date
             , raw_products.sell_end_date
         from raw_products
@@ -102,17 +102,17 @@ with
             , product_with_model.product_make_flag
             , product_with_model.product_salable_item
             , product_with_model.product_color
-            , product_with_model.safetystocklevel
-            , product_with_model.reorderpoint
-            , product_with_model.standardcost
-            , product_with_model.listprice
-            , product_with_model.sizeunitmeasurecode
-            , product_with_model.weightunitmeasureCode
+            , product_with_model.safety_stock_level
+            , product_with_model.reorder_point
+            , product_with_model.stardard_cost
+            , product_with_model.list_price
+            , product_with_model.size_unit_measure_code
+            , product_with_model.weight_unit_measure_code
             , product_with_model.product_weight
-            , product_with_model.daystomanufacture
-            , product_with_model.productline
-            , product_with_model.class
-            , product_with_model.style
+            , product_with_model.days_to_manufacture
+            , product_with_model.product_line
+            , product_with_model.product_class
+            , product_with_model.product_style
             , product_with_model.sell_start_date
             , product_with_model.sell_end_date
         from product_with_model
@@ -134,17 +134,17 @@ with
             , product_make_flag
             , product_salable_item
             , product_color
-            , safetystocklevel
-            , reorderpoint
-            , standardcost
-            , listprice
-            , sizeunitmeasurecode
-            , weightunitmeasureCode
+            , safety_stock_level
+            , reorder_point
+            , stardard_cost
+            , list_price
+            , size_unit_measure_code
+            , weight_unit_measure_code
             , product_weight
-            , daystomanufacture
-            , productline
-            , class
-            , style
+            , days_to_manufacture
+            , product_line
+            , product_class
+            , product_style
             , sell_start_date
             , sell_end_date
         from product_category_subcategory

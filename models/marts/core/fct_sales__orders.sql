@@ -47,9 +47,9 @@ with
             , subcategory_name
             , product_make_flag
             , product_salable_item
-            , productline
-            , class
-            , style
+            , product_line
+            , product_class
+            , product_style
         from {{ ref('dim_production__products') }}
     )
     , customers as (
@@ -124,9 +124,9 @@ with
             , products.subcategory_name
             , products.product_make_flag
             , products.product_salable_item
-            , products.productline
-            , products.class
-            , products.style
+            , products.product_line
+            , products.product_class
+            , products.product_style
             , calculating_freight_tax_per_product.sales_person_id
             , calculating_freight_tax_per_product.customer_billing_address_id
             , calculating_freight_tax_per_product.customer_shipping_address_id
@@ -158,9 +158,9 @@ with
         , order_details_with_products_names.subcategory_name
         , order_details_with_products_names.product_make_flag
         , order_details_with_products_names.product_salable_item
-        , order_details_with_products_names.productline
-        , order_details_with_products_names.class
-        , order_details_with_products_names.style
+        , order_details_with_products_names.product_line
+        , order_details_with_products_names.product_class
+        , order_details_with_products_names.product_style
         , order_details_with_products_names.sales_person_id
         , order_details_with_products_names.customer_billing_address_id
         , order_details_with_products_names.customer_shipping_address_id
@@ -190,9 +190,9 @@ with
           , subcategory_name
           , product_make_flag
           , product_salable_item
-          , productline
-          , class
-          , style
+          , product_line
+          , product_class
+          , product_style
           , sales_person_id
           , customer_billing_address_id
           , customer_shipping_address_id
@@ -226,9 +226,9 @@ with
           , subcategory_name
           , product_make_flag
           , product_salable_item
-          , productline
-          , class
-          , style
+          , product_line
+          , product_class
+          , product_style
           , sales_person_id
           , customer_billing_address_id
           , customer_shipping_address_id
@@ -280,9 +280,9 @@ with
           , subcategory_name
           , product_make_flag
           , product_salable_item
-          , productline
-          , class
-          , style
+          , product_line
+          , product_class
+          , product_style
           , reason_per_order
           , order_date
           , due_date
