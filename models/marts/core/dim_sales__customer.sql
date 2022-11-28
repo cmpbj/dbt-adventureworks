@@ -35,6 +35,8 @@ with
             , business_entity_id
             , store_id
             , customer_territory_id
+            , person_first_name as customer_first_name
+            , person_last_name as customer_last_name
             , concat(person_first_name, ' ', coalesce(person_middle_name, ''), ' ', person_last_name) as full_customer_name
         from customer_people
     )
@@ -45,6 +47,8 @@ with
             , business_entity_id
             , store_id
             , customer_territory_id
+            , customer_first_name
+            , customer_last_name
             , full_customer_name
         from transform
     )
