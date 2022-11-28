@@ -10,17 +10,17 @@ with
             , {{ transforms_boolean_values('makeflag') }} as product_make_flag
             , {{ transforms_boolean_values('finishedgoodsflag') }} as product_salable_item
             , color as product_color
-            , safetystocklevel
-            , reorderpoint
-            , standardcost
-            , listprice
-            , sizeunitmeasurecode
-            , weightunitmeasureCode
+            , safetystocklevel as safety_stock_level
+            , reorderpoint as reorder_point
+            , standardcost as stardard_cost
+            , listprice as list_price
+            , sizeunitmeasurecode as size_unit_measure_code
+            , weightunitmeasureCode as weight_unit_measure_code
             , weight as product_weight
-            , daystomanufacture
-            , productline
-            , class
-            , style 
+            , daystomanufacture as days_to_manufacture
+            , productline as product_line
+            , class as product_class
+            , style as product_style
             , cast(sellstartdate as datetime) as sell_start_date
             , cast(sellenddate as datetime) as sell_end_date
             , cast(modifieddate as datetime) as modified_date

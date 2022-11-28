@@ -78,13 +78,13 @@ models:
       - name: product_salable_item
         description: Column that identifies products thar are salable or not
 
-      - name: productline
+      - name: product_line
         description: Product line
 
-      - name: class
+      - name: product_class
         description: Product clas
 
-      - name: style
+      - name: product_style
         description: Product style
 
       - name: reason_per_order

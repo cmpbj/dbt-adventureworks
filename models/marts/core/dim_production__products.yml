@@ -64,37 +64,37 @@ models:
       - name: product_color
         description: Product color
 
-      - name: safetystocklevel
+      - name: safety_stock_level
         description: Minimum inventory quantity
 
-      - name: reorderpoint
+      - name: reorder_point
         description: Inventory level
 
-      - name: standardcost
+      - name: stardard_cost
         description: Standard cost of the product
 
-      - name: listprice
+      - name: list_price
         description: Selling price
 
-      - name: sizeunitmeasurecode
+      - name: size_unit_measure_code
         description: Unit measure for size
 
-      - name: weightunitmeasurecode
+      - name: weight_unit_measure_code
         description: Unit measure for weight
 
       - name: product_weight
         description: Product weight
 
-      - name: daystomanufacture
+      - name: days_to_manufacture
         description: Number of days required to manufacture the product
 
-      - name: productline
+      - name: product_line
         description: Product line
 
-      - name: class
+      - name: product_class
         description: Product class
 
-      - name: style
+      - name: product_style
         description: Product style
 
       - name: sell_start_date
