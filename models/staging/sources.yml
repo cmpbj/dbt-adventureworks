@@ -107,7 +107,7 @@ sources:
            tests:
              - unique
              - not_null
-         - name: costomerid
+         - name: customerid
            description: Foreign key to sales.customer
            tests:
              - not_null
