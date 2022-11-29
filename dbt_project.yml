@@ -37,6 +37,12 @@ models:
     staging:
       +materialized: table
       +schema: staging_tables
+      +persist_docs:
+        relation: true
+        columns: true
     marts:
       +materialized: table
       +schema: analytical
+      +persist_docs:
+        relation: true
+        columns: true
