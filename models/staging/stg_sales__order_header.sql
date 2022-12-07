@@ -20,10 +20,10 @@ with
             , purchaseordernumber as purchase_order_number
             , accountnumber as account_number
             , creditcardapprovalcode as credit_card_approval_code
-            , subtotal as order_sales_sub_total
-            , taxamt as order_tax_amount
-            , freight as order_freight
-            , totaldue as order_total_due_from_customers
+            , cast(subtotal as float) as order_sales_sub_total
+            , cast(taxamt as float) as order_tax_amount
+            , cast(freight as float) as order_freight
+            , cast(totaldue as float) as order_total_due_from_customers
             , cast(modifieddate as datetime) as modified_date
 
         from {{ source('adventureworksdw', 'sales_salesorderheader') }}

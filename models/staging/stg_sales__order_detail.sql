@@ -8,8 +8,8 @@ with
             , specialofferid as special_offer_id
             , carriertrackingnumber as carrier_tracking_number
             , orderqty as order_qty
-            , unitprice as unit_price
-            , unitpricediscount as unit_price_discount
+            , cast(unitprice as float) as unit_price
+            , cast(unitpricediscount as float) as unit_price_discount
             , cast(modifieddate as datetime) as modified_date
 
         from {{ source('adventureworksdw', 'sales_salesorderdetail') }}
