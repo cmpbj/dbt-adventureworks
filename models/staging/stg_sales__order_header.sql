@@ -20,12 +20,6 @@ with
             , purchaseordernumber as purchase_order_number
             , accountnumber as account_number
             , creditcardapprovalcode as credit_card_approval_code
-<<<<<<< HEAD
-            , cast(subtotal as float64) as order_sales_sub_total
-            , cast(taxamt as float64) as order_tax_amount
-            , cast(freight as float64) as order_freight
-            , cast(totaldue as float64) as order_total_due_from_customers
-=======
             , cast(subtotal as float) as order_sales_sub_total
             , cast(taxamt as float) as order_tax_amount
             , cast(freight as float) as order_freight
