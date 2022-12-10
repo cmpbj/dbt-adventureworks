@@ -24,7 +24,6 @@ with
             , cast(taxamt as float) as order_tax_amount
             , cast(freight as float) as order_freight
             , cast(totaldue as float) as order_total_due_from_customers
->>>>>>> b4184df8c221cbcab9c89450165633484c522a09
             , cast(modifieddate as datetime) as modified_date
 
         from {{ source('adventureworksdw', 'sales_salesorderheader') }}
